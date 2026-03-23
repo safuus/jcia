@@ -25,7 +25,7 @@ export default function Nav() {
               {label}
             </a>
           ))}
-          <a href="#contact" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          <a href="/#contact" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
             Get Started
           </a>
         </div>
@@ -49,7 +49,7 @@ export default function Nav() {
               {label}
             </a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-center">
+          <a href="/#contact" onClick={() => setOpen(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-center">
             Get Started
           </a>
         </div>

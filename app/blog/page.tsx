@@ -28,16 +28,16 @@ function getBlogPosts(): PostMeta[] {
     const slug = file.replace(".mdx", "");
     const content = fs.readFileSync(path.join(postsDir, file), "utf-8");
 
-    // Parse simple frontmatter-like exports from the MDX content
-    const titleMatch = content.match(/export const title = ["'](.+?)["']/);
-    const dateMatch = content.match(/export const date = ["'](.+?)["']/);
-    const summaryMatch = content.match(/export const summary = ["'](.+?)["']/);
+    // Matched-quote regex to avoid mismatched open/close quotes
+    const titleMatch = content.match(/export const title = (["'])(.+?)\1/);
+    const dateMatch = content.match(/export const date = (["'])(.+?)\1/);
+    const summaryMatch = content.match(/export const summary = (["'])(.+?)\1/);
 
     return {
       slug,
-      title: titleMatch?.[1] || slug,
-      date: dateMatch?.[1] || "Unknown",
-      summary: summaryMatch?.[1] || "",
+      title: titleMatch?.[2] || slug,
+      date: dateMatch?.[2] || "Unknown",
+      summary: summaryMatch?.[2] || "",
     };
   });
 

@@ -14,6 +14,10 @@ export type FormState = {
 
 type AudienceType = "client" | "student" | "partner";
 
+const VALID_AUDIENCES: AudienceType[] = ["client", "student", "partner"];
+const MAX_FIELD_LENGTH = 2000;
+const MAX_SHORT_FIELD = 200;
+
 // ─── Validation ──────────────────────────────────────────────────────
 
 function validateEmail(email: string): boolean {
@@ -27,6 +31,12 @@ function validateRequired(fields: Record<string, string>): string | null {
     }
   }
   return null;
+}
+
+/** Strip control characters and newlines to prevent email header injection */
+function sanitize(value: string | null, maxLength: number = MAX_SHORT_FIELD): string {
+  if (!value) return "";
+  return value.replace(/[\r\n\x00-\x1f]/g, " ").trim().slice(0, maxLength);
 }
 
 // ─── Contact Form ────────────────────────────────────────────────────
@@ -45,13 +55,18 @@ export async function submitContactForm(
   _prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const audience = formData.get("audience") as AudienceType;
-  const message = formData.get("message") as string;
-  const projectType = formData.get("projectType") as string | null;
-  const timeline = formData.get("timeline") as string | null;
-  const orgName = formData.get("orgName") as string | null;
+  const name = sanitize(formData.get("name") as string);
+  const email = sanitize(formData.get("email") as string);
+  const audience = formData.get("audience") as string;
+  const message = sanitize(formData.get("message") as string, MAX_FIELD_LENGTH);
+  const projectType = formData.get("projectType") ? sanitize(formData.get("projectType") as string) : null;
+  const timeline = formData.get("timeline") ? sanitize(formData.get("timeline") as string) : null;
+  const orgName = formData.get("orgName") ? sanitize(formData.get("orgName") as string) : null;
+
+  // Validate audience
+  if (!VALID_AUDIENCES.includes(audience as AudienceType)) {
+    return { success: false, error: "Invalid audience type" };
+  }
 
   // Validate required fields
   const requiredError = validateRequired({ Name: name, Email: email, Message: message });
@@ -115,12 +130,12 @@ export async function submitApplication(
   _prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const gradeLevel = formData.get("gradeLevel") as string;
-  const experience = formData.get("experience") as string;
-  const interests = formData.get("interests") as string;
-  const availability = formData.get("availability") as string;
+  const name = sanitize(formData.get("name") as string);
+  const email = sanitize(formData.get("email") as string);
+  const gradeLevel = sanitize(formData.get("gradeLevel") as string);
+  const experience = sanitize(formData.get("experience") as string);
+  const interests = sanitize(formData.get("interests") as string, MAX_FIELD_LENGTH);
+  const availability = sanitize(formData.get("availability") as string);
 
   // Validate required fields
   const requiredError = validateRequired({
