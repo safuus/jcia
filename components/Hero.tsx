@@ -24,13 +24,13 @@ export default function Hero() {
             href="#contact"
             className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors text-center"
           >
-            Enroll a Student
+            Start a Project
           </a>
           <a
-            href="#contact"
+            href="/apply"
             className="border border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:border-gray-400 hover:bg-gray-50 transition-colors text-center"
           >
-            Hire for a Project
+            Enroll a Student
           </a>
         </div>
 

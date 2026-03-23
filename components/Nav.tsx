@@ -1,6 +1,13 @@
 "use client";
 import { useState } from "react";
 
+const navLinks = [
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
+  { href: "/apply", label: "Apply" },
+];
+
 export default function Nav() {
   const [open, setOpen] = useState(false);
 
@@ -13,9 +20,11 @@ export default function Nav() {
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          <a href="#how-it-works" className="hover:text-gray-900 transition-colors">How It Works</a>
-          <a href="#for-who" className="hover:text-gray-900 transition-colors">Who It's For</a>
-          <a href="#proof" className="hover:text-gray-900 transition-colors">Our Work</a>
+          {navLinks.map(({ href, label }) => (
+            <a key={href} href={href} className="hover:text-gray-900 transition-colors">
+              {label}
+            </a>
+          ))}
           <a href="#contact" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
             Get Started
           </a>
@@ -35,9 +44,11 @@ export default function Nav() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden border-t border-gray-100 bg-white px-6 py-4 flex flex-col gap-4 text-sm font-medium text-gray-600">
-          <a href="#how-it-works" onClick={() => setOpen(false)}>How It Works</a>
-          <a href="#for-who" onClick={() => setOpen(false)}>Who It's For</a>
-          <a href="#proof" onClick={() => setOpen(false)}>Our Work</a>
+          {navLinks.map(({ href, label }) => (
+            <a key={href} href={href} onClick={() => setOpen(false)}>
+              {label}
+            </a>
+          ))}
           <a href="#contact" onClick={() => setOpen(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-center">
             Get Started
           </a>

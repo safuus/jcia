@@ -1,35 +1,32 @@
+import ContactForm from "@/components/ContactForm";
+
 export default function CTA() {
   return (
-    <section id="contact" className="py-24 px-6 bg-blue-600 text-white">
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          The question isn&apos;t whether AI will change technical education.
-        </h2>
-        <p className="text-blue-100 text-xl mb-12">
-          It&apos;s who will lead that change.
-        </p>
-
-        <div className="grid sm:grid-cols-2 gap-4 text-left max-w-xl mx-auto mb-12">
-          {[
-            { role: "Clients", detail: "Web development, MVPs, internal tools, data analysis" },
-            { role: "Students", detail: "High school or college, basic programming, ready to build" },
-            { role: "Incubators", detail: "Affordable technical execution for portfolio companies" },
-            { role: "Enterprise", detail: "Build your AI-trained talent pipeline" },
-          ].map(({ role, detail }) => (
-            <div key={role} className="bg-blue-700 rounded-lg p-4">
-              <div className="font-semibold text-sm mb-1">{role}</div>
-              <div className="text-blue-200 text-xs">{detail}</div>
-            </div>
-          ))}
+    <section id="contact" className="py-24 px-6 bg-gray-50">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-12">
+          <p className="text-blue-600 text-sm font-semibold uppercase tracking-widest mb-4">
+            Get in Touch
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Let&apos;s build something real.
+          </h2>
+          <p className="text-gray-600 text-lg">
+            Whether you need software built, want to train your next developer, or are
+            looking for a talent pipeline — we&apos;d love to hear from you.
+          </p>
         </div>
 
-        <a
-          href="mailto:wa@codingmind.com"
-          className="inline-block bg-white text-blue-600 font-bold text-lg px-10 py-4 rounded-xl hover:bg-blue-50 transition-colors"
-        >
-          Get in Touch
-        </a>
-        <p className="text-blue-200 text-sm mt-4">wa@codingmind.com · Redmond, WA</p>
+        <div className="bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-gray-200">
+          <ContactForm />
+        </div>
+
+        <p className="text-gray-400 text-sm text-center mt-6">
+          Redmond, WA ·{" "}
+          <a href="mailto:wa@codingmind.com" className="text-blue-500 hover:underline">
+            wa@codingmind.com
+          </a>
+        </p>
       </div>
     </section>
   );
