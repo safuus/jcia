@@ -2,6 +2,16 @@
 
 All notable changes to the Just Code It Academy website.
 
+
+## [0.3.1.0] - 2026-04-03
+
+### Fixed
+- Form submissions no longer crash with 500 when RESEND_API_KEY is not configured
+- Resend client lazy-initialized to prevent server-side exceptions on missing env var
+
+### Changed
+- Contact email updated from wa@codingmind.com to max@justcodeit.academy across all pages
+
 ## [0.3.0.0] - 2026-04-02 — Audience-First Redesign
 
 ### Added
