@@ -2,6 +2,16 @@
 
 All notable changes to the Just Code It Academy website.
 
+
+## [0.3.1.0] - 2026-04-03
+
+### Fixed
+- Form submissions no longer crash with 500 when RESEND_API_KEY is not configured
+- Resend client lazy-initialized to prevent server-side exceptions on missing env var
+
+### Changed
+- Contact email updated from wa@codingmind.com to max@justcodeit.academy across all pages
+
 ## [0.3.0.0] - 2026-04-02 — Audience-First Redesign
 
 ### Added
@@ -30,7 +40,7 @@ All notable changes to the Just Code It Academy website.
 
 - **Contact form with audience routing.** Visitors select Client, Student, or Partner — form shows relevant fields for each. Students are redirected to the dedicated /apply page. Powered by Resend Server Actions (no separate API route).
 - **Auto-reply emails.** Every form submission triggers an instant confirmation email to the submitter (fire-and-forget — doesn't block the user).
-- **Student application page (`/apply`).** Dedicated form with grade level, programming experience, interests, and availability. Submissions go to wa@codingmind.com.
+- **Student application page (`/apply`).** Dedicated form with grade level, programming experience, interests, and availability. Submissions go to max@justcodeit.academy.
 - **About page (`/about`).** Founder bio (Colin Li), CodingMind Academy connection, mission statement, and credibility signals.
 - **Services page (`/services`).** Detailed breakdowns for client services (websites, MVPs, internal tools, AI integration) and student programs (training, paid internship, supervised learning). Enterprise/incubator section.
 - **FAQ section.** 8 questions addressing top objections for clients, students, and partners. Accordion UI.
